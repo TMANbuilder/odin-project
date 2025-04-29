@@ -18,7 +18,7 @@ function createGrid(targetValue) {
 
         console.log(`OUTER: Cycle count: ${i}`);
         const gridRow = document.createElement("div");
-        gridRow.className = "grid-column";
+        gridRow.className = "grid-row";
 
         for (let y = 0; y < gridSize; y++) {
 
@@ -26,7 +26,9 @@ function createGrid(targetValue) {
 
             const gridCell = document.createElement("div");
             gridCell.className = "grid-cell";
-            gridCell.innerText = "-";
+            gridCell.addEventListener("click", (e) => {
+                gridCell.classList.add("selected-cell");
+            });
             
             gridRow.appendChild(gridCell);
 
@@ -36,5 +38,5 @@ function createGrid(targetValue) {
 
     };
 
+};
 
-}

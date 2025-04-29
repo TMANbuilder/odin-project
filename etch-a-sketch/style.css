@@ -1,8 +1,21 @@
 .grid-cell {
     border: 1px solid black;
-    
+    height: 20px;
+    width: 20px;
+}
+
+.grid-row {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selected-cell {
+    background-color: black;
 }
 
 .grid-cell:hover {
     background-color: yellow;
 }
+

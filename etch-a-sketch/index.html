@@ -19,10 +19,8 @@
             <button id="eraser" onclick="eraserMode()">Eraser</button>
             <button id="clear" onclick="clearGrid()">Clear</button>
             <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="64" class="slider" id="myRange">
+                <input type="range" min="1" max="64" value="24" class="slider" id="grid-size">
             </div>
-            <button onclick="createGrid(document.getElementById('grid-size').value)">Create Grid</button>
-            <input id="grid-size"placeholder="16"></input>
         </div>
         <div id="grid-container">
             <div id="grid"></div>    

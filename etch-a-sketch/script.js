@@ -60,3 +60,16 @@ function eraserMode() {
 function standardMode() {
     MODE = "standard";
 };
+
+const gridSizeSlider = document.getElementById("grid-size");
+let targetSize = gridSizeSlider.value;
+
+createGrid(targetSize);
+
+gridSizeSlider.addEventListener("click", () => {
+    let targetSize = gridSizeSlider.value;
+
+    console.log("The targetSize is: " + targetSize);
+    createGrid(targetSize);
+
+});

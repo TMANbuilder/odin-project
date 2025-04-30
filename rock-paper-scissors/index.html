@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body id="body">
+    <div id="game-title">
+        <h1 id=game-title-text>ROCK PAPER SCISSORS</h1>
+    </div>
+    <div id="message-board">
+        <h2 id="main-message">Let's get started!</h2>
+        <h3 id="sub-message">First person to 5 points wins the game</h3>
+    </div>
+    <div id="scoreboard">
+        <div id="user-details" class="player-card">
+            <div id="choice-card">
+                <span id="user-choice">😎</span>
+            </div>
+            <div id="user-score-wrapper">
+                <h4>User: <span id="user-score">0</span></h4>
+            </div>
+        </div>
+        <div id="computer-details" class="player-card">
+            <div id="choice-card">
+                <span id="computer-choice">🤖</span>
+            </div>
+            <div id="computer-score-wrapper">
+                <h4>Computer: <span id="computer-score">0</span></h4>
+            </div>
+        </div>
+    </div>
+    <div id="button-wrapper">
+        <div class="button-card">
+            <button id="rock-button" onclick="main('rock')"><span>✊</span>Rock</button>
+        </div>
+        <div class="button-card">
+            <button id="paper-button" onclick="main('paper')"><span>✋</span>Paper</button>
+        </div>
+        <div class="button-card">
+            <button id="scissor-button" onclick="main('scissor')"><span>✌️</span>Scissor</button>
+        </div>
+    </div>
+    <div id="end-game-modal" class="modal">
+        <div class="modal-content">
+            <h1 id="modal-main-text"></h1>
+            <h2 id="modal-secondary-text"></h2>
+            <button id="play-again-button" onclick="closeModal()">Play Again</button>
+        </div>
+      </div>
+    <script src="./rock-paper-scissors.js"></script>
+</body>
+</html>

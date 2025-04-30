@@ -1,0 +1,161 @@
+/* Apply basic reset and full height */
+html {
+    box-sizing: border-box; /* Makes padding/border included in width/height */
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+#body {
+    display: flex; /* Use Flexbox for the body */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically (needs height) */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    font-family: sans-serif; /* Optional: Set a default font */
+    text-align: center; /* Center text within block elements by default */
+    padding: 20px; /* Add some padding around the content */
+}
+
+#game-title {
+    background-color: black;
+    padding: 10px 20px; /* Add padding */
+    margin-bottom: 20px; /* Add space below title */
+    width: 100%; /* Make it take full width before centering text */
+    max-width: 600px; /* Optional: constrain max width */
+}
+
+#game-title-text {
+    color: yellow;
+    margin: 0; /* Remove default h1 margin */
+}
+
+#message-board {
+    margin-bottom: 20px; /* Add space below messages */
+}
+
+#message-board h2,
+#message-board h3 {
+    margin: 5px 0; /* Adjust spacing for messages */
+}
+
+#scoreboard {
+    display: flex; /* Use Flexbox for the scoreboard */
+    justify-content: center; /* Center the player cards horizontally */
+    align-items: stretch; /* Make cards equal height if content differs */
+    gap: 20px; /* Add space between the two cards */
+    margin-bottom: 30px; /* Add space below scoreboard */
+    width: 100%; /* Allow scoreboard to take width */
+    max-width: 600px; /* Optional: constrain max width */
+}
+
+.player-card { /* Style both user and computer details */
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for cards */
+    min-width: 150px; /* Ensure cards have a minimum width */
+    display: flex; /* Use flexbox inside the card */
+    flex-direction: column; /* Stack choice and score vertically */
+    align-items: center; /* Center items horizontally inside card */
+    justify-content: space-between; /* Space out choice and score */
+}
+
+/* Style the area where rock/paper/scissors choice will appear */
+#human-choice,
+#computer-choice {
+    min-height: 50px; /* Give space for the choice text/icon */
+    font-size: 2em; /* Make the choice display larger */
+    margin-bottom: 10px;
+    /* You'll likely add content here with JS later */
+}
+
+#user-score-wrapper h4,
+#computer-score-wrapper h4 {
+    margin: 0; /* Remove default heading margin */
+    font-size: 1.1em;
+}
+
+#button-wrapper {
+    display: flex; /* Use Flexbox for the scoreboard */
+    justify-content: center; /* Center the player cards horizontally */
+    align-items: stretch; /* Make cards equal height if content differs */
+    gap: 20px; /* Add space between the two cards */
+    margin-bottom: 30px; /* Add space below scoreboard */
+    width: 100%; /* Allow scoreboard to take width */
+    max-width: 600px; /* Optional: constrain max width */
+}
+
+/* Container for the buttons */
+#button-card { /* Add an ID to the div wrapping the buttons in HTML */
+    display: flex; /* Use flexbox for buttons */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 15px; /* Add space between buttons */
+}
+
+/* Style the individual button wrappers if needed, or style buttons directly */
+.button-card button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+.button-card button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Optional: Add specific styles for rock/paper/scissor buttons if desired */
+#rock-button { background-color: #dc3545; } /* Red */
+#paper-button { background-color: #ffc107; color: black; } /* Yellow */
+#scissor-button { background-color: #28a745; } /* Green */
+
+#rock-button:hover { background-color: #c82333; }
+#paper-button:hover { background-color: #e0a800; }
+#scissor-button:hover { background-color: #218838; }
+
+#user-choice,
+#computer-choice {
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---MODAL STYLING--- */
+
+#end-game-modal {
+    display: none; /* Hide the modal by default */
+    position: fixed; /* Keep it positioned relative to the viewport */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+    z-index: 1000; /* Ensure it's on top of other content */
+    /* Add styles for centering the modal content */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Add a class to show the modal when needed */
+  #end-game-modal.active {
+    display: flex; /* Or 'block', but 'flex' works well with the centering styles */
+  }
+  
+  .modal-content {
+    /* Your existing styles for the box inside the modal */
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    /* Add any other specific styles for the content box */
+  }
+  
+  /* Add any other existing styles you have */

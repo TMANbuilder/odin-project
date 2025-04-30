@@ -14,6 +14,13 @@ function createGrid(targetValue) {
     const gridContainer = document.getElementById("grid");
     gridContainer.innerHTML = "";
 
+    const colorPicker = document.getElementById("color-picker");
+    let targetColor = colorPicker.value;
+
+    colorPicker.addEventListener("input", () => {
+        targetColor = colorPicker.value;
+    });
+
     for (let i = 0; i < gridSize; i++) {
 
         console.log(`OUTER: Cycle count: ${i}`);
@@ -26,8 +33,8 @@ function createGrid(targetValue) {
 
             const gridCell = document.createElement("div");
             gridCell.className = "grid-cell";
-            gridCell.addEventListener("click", (e) => {
-                gridCell.classList.add("selected-cell");
+            gridCell.addEventListener("click", () => {
+                gridCell.style.backgroundColor = targetColor;
             });
             
             gridRow.appendChild(gridCell);

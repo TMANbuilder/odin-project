@@ -49,8 +49,7 @@ function createGrid(targetValue) {
 };
 
 function clearGrid() {
-    const gridContainer = document.getElementById("grid");
-    gridContainer.innerHTML = "";    
+    createGrid(targetSize);   
 };
 
 function eraserMode() {

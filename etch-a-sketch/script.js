@@ -1,3 +1,5 @@
+let MODE = "standard";
+
 function createGrid(targetValue) {
 
     gridSize = Number(targetValue);
@@ -19,18 +21,21 @@ function createGrid(targetValue) {
 
     for (let i = 0; i < gridSize; i++) {
 
-        console.log(`OUTER: Cycle count: ${i}`);
         const gridRow = document.createElement("div");
         gridRow.className = "grid-row";
 
         for (let y = 0; y < gridSize; y++) {
 
-            console.log(`INNER: Cycle count: ${y}`);
-
             const gridCell = document.createElement("div");
             gridCell.className = "grid-cell";
             gridCell.addEventListener("click", () => {
-                gridCell.style.backgroundColor = targetColor;
+                if (MODE == "standard") {
+                    gridCell.style.backgroundColor = targetColor;
+                } else if (MODE == "eraser") {
+                    gridCell.style.backgroundColor = "";
+                } else {
+                    console.log("ERROR");
+                }
             });
             
             gridRow.appendChild(gridCell);
@@ -46,4 +51,12 @@ function createGrid(targetValue) {
 function clearGrid() {
     const gridContainer = document.getElementById("grid");
     gridContainer.innerHTML = "";    
-}
+};
+
+function eraserMode() {
+    MODE = "eraser";   
+};
+
+function standardMode() {
+    MODE = "standard";
+};

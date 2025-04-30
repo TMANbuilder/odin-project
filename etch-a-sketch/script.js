@@ -61,15 +61,22 @@ function standardMode() {
     MODE = "standard";
 };
 
+// initiate the grid size
 const gridSizeSlider = document.getElementById("grid-size");
+const gridSizeMessage = document.getElementById("grid-size-message");
+
 let targetSize = gridSizeSlider.value;
+gridSizeMessage.innerText = `${targetSize} X ${targetSize}`;
 
 createGrid(targetSize);
 
+
+// add event listener 
 gridSizeSlider.addEventListener("click", () => {
     let targetSize = gridSizeSlider.value;
-
+    
     console.log("The targetSize is: " + targetSize);
     createGrid(targetSize);
+    gridSizeMessage.innerText = `${targetSize} X ${targetSize}`;
 
 });

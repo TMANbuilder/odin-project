@@ -1,8 +1,9 @@
-Fix grid                        completed
-Make grid cells pressable       completed 
-Create color selector           completed
-Create rainbow mode             
-Create eraser                   completed
-Develop clear functionality     completed
-Update slider
-d
+✔ Fix grid @done(25-04-30 13:03)
+✔ Make grid cells pressable @done(25-04-30 13:03)
+✔ Create color selector @done(25-04-30 13:04)
+✘ Fix 'create grid' button @cancelled(25-04-30 13:04)
+☐ Create rainbow mode             
+✔ Create eraser @done(25-04-30 13:04)
+✔ Develop clear functionality @done(25-04-30 13:04)
+✔ Update slider @done(25-04-30 13:04)
+☐ Have the grid sheet not resize

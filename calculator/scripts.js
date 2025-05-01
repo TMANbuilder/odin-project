@@ -139,6 +139,25 @@ class Calculator {
         this.resetCurrentArgument();
     }
 
+    setMemoryScreen() {
+        const memoryContainer = document.getElementById("memory-container");
+        let tempArray = this.getMemoryArguments();  
+
+        const toBeRemoved = memoryContainer.querySelectorAll(".previous-argument");
+        toBeRemoved.forEach(target => target.remove());
+
+        tempArray.forEach((target, index) => {
+            const argument = document.createElement("div");
+            argument.className = "previous-argument";
+            argument.innerText = target
+            memoryContainer.appendChild(argument);
+        });   
+    }
+
+    getMemoryArguments() {
+        return this.memory;
+    }
+
     resetCalculator() {
         this.setCurrentOperand(0);
         this.setStoredOperand(0);
@@ -218,6 +237,7 @@ class Calculator {
         this.setScreen("result");
         this.setArgumentScreen(this.getCurrentArgument());
         this.nextRound();
+        this.setMemoryScreen();
         return;
 
     }

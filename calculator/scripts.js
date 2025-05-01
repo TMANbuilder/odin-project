@@ -165,9 +165,6 @@ class Calculator {
         this.setCurrentOperand(0);
         this.setOperator(targetValue);
         this.setScreen("stored");
-
-        console.log("current argument is: " + this.getCurrentArgument());
-
     }
 
     calculate() {
@@ -212,7 +209,22 @@ class Calculator {
         this.setResult(result);
         this.setScreen("result");
         this.setArgumentScreen(this.getCurrentArgument());
+        this.nextRound();
         return;
+
+    }
+
+    nextRound() {
+
+        this.setCurrentOperand(this.getResult());
+        this.setStoredOperand(0);
+        this.setOperator(null);
+        this.setResult(null);
+
+        console.log("nextRound() ran...");
+        console.log("current " + this.getCurrentOperand());
+        console.log("stored " + this.getStoredOperand());
+        console.log("operator " + this.getOperator());
 
     }
 

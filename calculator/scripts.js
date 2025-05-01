@@ -2,6 +2,7 @@ class Calculator {
 
     constructor() {
         this.screen = document.getElementById("screen");
+        this.argumentScreen = document.getElementById("argument-screen");
         this.currentArgument = "";
         this.currentOperand = 0;
         this.storedOperand = 0;
@@ -100,6 +101,11 @@ class Calculator {
         
     }
 
+    setArgumentScreen(targetValue) {
+        console.log(`The targetValue is: ${targetValue}`);
+        this.argumentScreen.innerText = String(targetValue);
+    }
+
     getResult() {
         return this.result;
     }
@@ -147,10 +153,14 @@ class Calculator {
 
     updateOperator(targetValue) {
 
+        this.setCurrentArgument(this.getCurrentOperand());
+        this.setCurrentArgument(targetValue);
         this.moveCurrentOperand();
         this.setCurrentOperand(0);
         this.setOperator(targetValue);
         this.setScreen("stored");
+
+        console.log("current argument is: " + this.getCurrentArgument());
 
     }
 
@@ -159,6 +169,8 @@ class Calculator {
         let currentOperand = Number(this.getCurrentOperand());
         let operator = this.getOperator();
         let result = "";
+
+        this.setCurrentArgument(String(currentOperand));
 
         console.log(`storedOperator: ${storedOperand}`);
         console.log(`currentOperator: ${currentOperand}`);
@@ -193,6 +205,7 @@ class Calculator {
 
         this.setResult(result);
         this.setScreen("result");
+        this.setArgumentScreen(this.getCurrentArgument());
         return;
 
     }

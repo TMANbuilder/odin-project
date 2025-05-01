@@ -57,7 +57,7 @@ class Calculator {
     }
 
     resetOperator() {
-        this.setOperator(null);
+        this.operator = null;
     }
 
     resetNextOperand() {

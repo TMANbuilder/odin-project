@@ -132,6 +132,13 @@ class Calculator {
         this.setStoredOperand(currentOperand);
     }
 
+    moveCurrentArgument() {
+        let array = this.memory;
+        
+        array.push(this.getCurrentArgument());
+        this.resetCurrentArgument();
+    }
+
     resetCalculator() {
         this.setCurrentOperand(0);
         this.setStoredOperand(0);
@@ -159,6 +166,7 @@ class Calculator {
 
     updateOperator(targetValue) {
 
+        this.setArgumentScreen("");
         this.setCurrentArgument(this.getCurrentOperand());
         this.setCurrentArgument(targetValue);
         this.moveCurrentOperand();
@@ -216,6 +224,7 @@ class Calculator {
 
     nextRound() {
 
+        this.moveCurrentArgument();
         this.setCurrentOperand(this.getResult());
         this.setStoredOperand(0);
         this.setOperator(null);

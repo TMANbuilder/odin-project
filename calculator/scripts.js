@@ -108,6 +108,15 @@ class Calculator {
         this.result = targetValue;
     }
 
+    getCurrentArgument() {
+        return this.currentArgument;
+    }
+
+    setCurrentArgument(targetValue) {
+        let tempArgument = this.getCurrentArgument();
+        this.currentArgument = String(tempArgument) + " " + String(targetValue);
+    }
+
     moveCurrentOperand() {
         let currentOperand = this.getCurrentOperand();
         this.setStoredOperand(currentOperand);

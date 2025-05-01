@@ -1,2 +1,11 @@
-☐ debug and fix calculator entry 
-☐ add the ability to see longform of operation
+✔ debug and fix calculator entry @done(25-05-01 09:34)
+
+Bug:
+    ☐ Issue with setting operand values greater than 1 char
+
+Functionality to develop:
+    ☐ add the ability to see longform of operation
+    ☐ add 'memory' div
+    ☐ have results calculate despite not hitting the '=' button
+    ☐ add keyboard functionality
+    

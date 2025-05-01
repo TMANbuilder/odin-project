@@ -4,8 +4,18 @@ class Calculator {
         this.argument = "";
         this.storedOperand = 0;
         this.currentOperand = 0;
+        this.nextOperand = false;
         this.operator = null;
         this.result = null;
+    }
+
+    setNextOperand() {
+        this.nextOperand = !this.nextOperand;
+        console.log(`nextOperand is set to: ` + this.nextOperand);
+    }
+    
+    getNextOperand() {
+        return this.nextOperand;
     }
 
     setOperand(targetValue) {
@@ -36,13 +46,28 @@ class Calculator {
         return this.operator;
     }
 
+    setScreen(targetValue) {
+        const screen = document.getElementById("screen");
+        screen.innerText = targetValue;
+    }
+
+    clearScreen() {
+        const screen = document.getElementById("screen");
+        screen.innerText = 0;
+    }
+
     updateOperand(targetValue) {
         const screen = document.getElementById("screen");
         let currentValue = screen.innerText;
 
-        if (currentValue === "0") {
+        if (this.getNextOperand() === true) {
             this.setScreen(String(targetValue));
-        } else if (this.getOperator() !== null) {
+            this.setNextOperand();
+            console.log('Inside the updateOperand()');
+            return;
+        } 
+
+        if (currentValue === "0") {
             this.setScreen(String(targetValue));
         } else {
             let newValue = (String(currentValue) + String(targetValue));     
@@ -60,21 +85,27 @@ class Calculator {
         switch (targetValue) {
             case "+/-":
                 this.operator = "+/-";
+                this.setNextOperand();
                 break;
             case "%":
                 this.operator = "%";
+                this.setNextOperand();
                 break;
             case "/":
                 this.operator = "/";
+                this.setNextOperand();
                 break;
             case "x":
                 this.operator = "x";
+                this.setNextOperand();
                 break;
             case "-":
                 this.operator = "-";
+                this.setNextOperand();
                 break;
             case "+":
                 this.operator = "+";
+                this.setNextOperand();
                 break;
             default:
                 console.log("Error");
@@ -121,11 +152,6 @@ class Calculator {
 
     }
 
-    setScreen(targetValue) {
-        const screen = document.getElementById("screen");
-        screen.innerText = targetValue;
-    }   
-
 }
 
 const calculator = new Calculator();
@@ -140,4 +166,8 @@ function submitOperator(targetValue) {
 
 function calculate() {
     calculator.calculate();
+}
+
+function clearCalcScreen() {
+    calculator.clearScreen();
 }

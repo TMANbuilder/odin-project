@@ -2,100 +2,47 @@ class Calculator {
 
     constructor() {
         this.screen = document.getElementById("screen");
-        this.argument = "";
-        this.storedOperand = 0;
+        this.currentArgument = "";
         this.currentOperand = 0;
+        this.storedOperand = 0;
         this.nextOperand = false;
         this.operator = null;
         this.result = null;
+        this.memory = [];
     }
 
-    setNextOperand() {
-        this.nextOperand = !this.nextOperand;
-        console.log(`nextOperand is set to: ` + this.nextOperand);
+    setNextOperand(targetValue = null) {
+        
+        if (targetValue === null) {
+            this.nextOperand = !this.nextOperand;    
+        } else {
+            this.nextOperand = targetValue;
+        }
+        
     }
     
     getNextOperand() {
         return this.nextOperand;
     }
     
-    setStoredOperand(targetValue) {
-        this.storedOperand = targetValue;
-    }
-    
     setCurrentOperand(targetValue) {
         this.currentOperand = targetValue;
     }
-
-    getStoredOperand() {
-        return this.storedOperand;
+    
+    setStoredOperand(targetValue) {
+        this.storedOperand = targetValue;
     }
 
     getCurrentOperand() {
         return this.currentOperand;
     }
 
-    getOperator() {
-        return this.operator;
-    }
-
-    setScreen(targetValue) {
-        this.screen.innerText = targetValue;
-    }
-
-    clearScreen() {
-        this.screen.innerText = 0;
-    }
-
-    resetOperand() {
-        this.setCurrentOperand(0);
-        this.setStoredOperand(0);
-
-        console.log("After reset...");
-        console.log("currentOperand: " + this.currentOperand);
-        console.log("storedOperand: " + this.storedOperand);
-    }
-
-    resetOperator() {
-        this.operator = null;
-    }
-
-    resetNextOperand() {
-        this.nextOperand = false;
-    }
-
-    setOperand(targetValue) {
-        if (this.operator != null) {
-            this.setStoredOperand(this.currentOperand);
-            this.setCurrentOperand(0);
-        }
-        this.currentOperand = targetValue;
-    }
-
-    updateOperand(targetValue) {
-        
-        let currentValue = this.screen.innerText;
-
-        if (this.getNextOperand() === true) {
-            this.setOperand(targetValue);
-            this.setScreen(this.currentOperand);
-            this.setNextOperand();
-            console.log('Inside the updateOperand()');
-            return;
-        } 
-
-        if (currentValue === "0") {
-            this.setOperand(targetValue);
-            this.setScreen(this.currentOperand);
-        } else {
-            let newValue = (String(this.currentOperand) + String(targetValue));     
-            this.setOperand(newValue);
-            this.setScreen(this.currentOperand);
-        }
+    getStoredOperand() {
+        return this.storedOperand;
     }
 
     setOperator(targetValue) {
-        
+
         switch (targetValue) {
             case "+/-":
                 this.operator = "+/-";
@@ -125,20 +72,91 @@ class Calculator {
                 console.log("Error");
                 return;
         }
+    }
+
+    getOperator() {
+        return this.operator;
+    }
+
+    setScreen(targetOperand) {
+
+        console.log("Entering setScreen...");
+
+        if (targetOperand === "current") {
+            console.log("current...");
+            this.screen.innerText = this.getCurrentOperand();
+        } else if (targetOperand === "stored") {
+            console.log("stored...");
+            this.screen.innerText = this.getStoredOperand();
+        } else if (targetOperand === "result") {
+            console.log("updating the results...");
+            this.screen.innerText = this.getResult();
+        } else if (targetOperand === "reset") {
+            console.log("reset...");
+            this.screen.innerText = 0;
+        } else {
+            console.log("Error when setting screen");
+        }
+        
+    }
+
+    getResult() {
+        return this.result;
+    }
+
+    setResult(targetValue) {
+        this.result = targetValue;
+    }
+
+    moveCurrentOperand() {
+        let currentOperand = this.getCurrentOperand();
+        this.setStoredOperand(currentOperand);
+    }
+
+    resetCalculator() {
+        this.setCurrentOperand(0);
+        this.setStoredOperand(0);
+        this.setNextOperand(false);
+        this.setOperator(null);
+        this.setResult(null);
+        this.setScreen("reset");
+    }
+
+    updateOperand(targetValue) { 
+
+        let currentOperandValue = String(this.getCurrentOperand());
+
+        if (currentOperandValue === "0") {
+            this.setCurrentOperand(targetValue);
+            this.setScreen("current");
+        } else {
+            let newValue = (String(this.currentOperand) + String(targetValue));     
+            this.setCurrentOperand(newValue);
+            this.setScreen("current");
+        }
+    }
+
+    updateOperator(targetValue) {
+
+        this.moveCurrentOperand();
+        this.setCurrentOperand(0);
+        this.setOperator(targetValue);
+        this.setScreen("stored");
 
     }
 
     calculate() {
-        let oper_1 = Number(this.getStoredOperand()); 
-        let oper_2 = Number(this.getCurrentOperand());
+        let storedOperand = Number(this.getStoredOperand()); 
+        let currentOperand = Number(this.getCurrentOperand());
         let operator = this.getOperator();
+        let result = "";
 
-        console.log(`oper_1: ${oper_1}`);
-        console.log(`oper_2: ${oper_2}`);
+        console.log(`storedOperator: ${storedOperand}`);
+        console.log(`currentOperator: ${currentOperand}`);
         console.log(`operator: ${operator}`);
 
-        console.log(`Type oper_1: ` + typeof(oper_1));
-        console.log(`Type oper_2: ` + typeof(oper_2));
+        console.log(`Type stored: ` + typeof(storedOperand));
+        console.log(`Type current: ` + typeof(currentOperand));
 
         switch (operator) {
             case "+/-":
@@ -148,23 +166,24 @@ class Calculator {
                 this.operator = "%";
                 break;
             case "/":
-                this.result = oper_1 / oper_2;
+                result = storedOperand / currentOperand;
                 break;
             case "x":
-                this.result = oper_1 * oper_2;
+                result = storedOperand * currentOperand;
                 break;
             case "-":
-                this.result = oper_1 - oper_2;
+                result = storedOperand - currentOperand;
                 break;
             case "+":
-                this.result = oper_1 + oper_2;
+                result = storedOperand + currentOperand;
                 break;
             default:
                 console.log("Error");
                 return;
         }
 
-        this.setScreen(this.result);
+        this.setResult(result);
+        this.setScreen("result");
         return;
 
     }
@@ -178,7 +197,7 @@ function submitOperand(targetValue) {
 }
 
 function submitOperator(targetValue) {
-    calculator.setOperator(targetValue);
+    calculator.updateOperator(targetValue);
 }
 
 function calculate() {
@@ -186,8 +205,5 @@ function calculate() {
 }
 
 function clearCalcScreen() {
-    calculator.clearScreen();
-    calculator.resetOperand();
-    calculator.resetOperator();
-    calculator.resetNextOperand();
+    calculator.resetCalculator();
 }

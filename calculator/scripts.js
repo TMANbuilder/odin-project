@@ -1,6 +1,7 @@
 class Calculator {
 
     constructor() {
+        this.screen = document.getElementById("screen");
         this.argument = "";
         this.storedOperand = 0;
         this.currentOperand = 0;
@@ -16,14 +17,6 @@ class Calculator {
     
     getNextOperand() {
         return this.nextOperand;
-    }
-
-    setOperand(targetValue) {
-        if (this.operator != null) {
-            this.setStoredOperand(this.currentOperand);
-        }
-        
-        this.currentOperand = targetValue;
     }
     
     setStoredOperand(targetValue) {
@@ -47,40 +40,61 @@ class Calculator {
     }
 
     setScreen(targetValue) {
-        const screen = document.getElementById("screen");
-        screen.innerText = targetValue;
+        this.screen.innerText = targetValue;
     }
 
     clearScreen() {
-        const screen = document.getElementById("screen");
-        screen.innerText = 0;
+        this.screen.innerText = 0;
+    }
+
+    resetOperand() {
+        this.setCurrentOperand(0);
+        this.setStoredOperand(0);
+
+        console.log("After reset...");
+        console.log("currentOperand: " + this.currentOperand);
+        console.log("storedOperand: " + this.storedOperand);
+    }
+
+    resetOperator() {
+        this.setOperator(null);
+    }
+
+    resetNextOperand() {
+        this.nextOperand = false;
+    }
+
+    setOperand(targetValue) {
+        if (this.operator != null) {
+            this.setStoredOperand(this.currentOperand);
+            this.setCurrentOperand(0);
+        }
+        this.currentOperand = targetValue;
     }
 
     updateOperand(targetValue) {
-        const screen = document.getElementById("screen");
-        let currentValue = screen.innerText;
+        
+        let currentValue = this.screen.innerText;
 
         if (this.getNextOperand() === true) {
-            this.setScreen(String(targetValue));
+            this.setOperand(targetValue);
+            this.setScreen(this.currentOperand);
             this.setNextOperand();
             console.log('Inside the updateOperand()');
             return;
         } 
 
         if (currentValue === "0") {
-            this.setScreen(String(targetValue));
+            this.setOperand(targetValue);
+            this.setScreen(this.currentOperand);
         } else {
-            let newValue = (String(currentValue) + String(targetValue));     
-            this.setScreen(String(newValue));
+            let newValue = (String(this.currentOperand) + String(targetValue));     
+            this.setOperand(newValue);
+            this.setScreen(this.currentOperand);
         }
     }
 
     setOperator(targetValue) {
-
-        const screen = document.getElementById("screen");
-        let currentValue = screen.innerText;
-
-        this.setOperand(currentValue);
         
         switch (targetValue) {
             case "+/-":
@@ -115,13 +129,16 @@ class Calculator {
     }
 
     calculate() {
-        let oper_1 = this.getStoredOperand(); 
-        let oper_2 = this.getCurrentOperand();
+        let oper_1 = Number(this.getStoredOperand()); 
+        let oper_2 = Number(this.getCurrentOperand());
         let operator = this.getOperator();
 
         console.log(`oper_1: ${oper_1}`);
         console.log(`oper_2: ${oper_2}`);
         console.log(`operator: ${operator}`);
+
+        console.log(`Type oper_1: ` + typeof(oper_1));
+        console.log(`Type oper_2: ` + typeof(oper_2));
 
         switch (operator) {
             case "+/-":
@@ -170,4 +187,7 @@ function calculate() {
 
 function clearCalcScreen() {
     calculator.clearScreen();
+    calculator.resetOperand();
+    calculator.resetOperator();
+    calculator.resetNextOperand();
 }

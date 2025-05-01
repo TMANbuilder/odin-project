@@ -123,6 +123,10 @@ class Calculator {
         this.currentArgument = String(tempArgument) + " " + String(targetValue);
     }
 
+    resetCurrentArgument() {
+        this.currentArgument = "";
+    }
+
     moveCurrentOperand() {
         let currentOperand = this.getCurrentOperand();
         this.setStoredOperand(currentOperand);
@@ -135,6 +139,8 @@ class Calculator {
         this.setOperator(null);
         this.setResult(null);
         this.setScreen("reset");
+        this.resetCurrentArgument();
+        this.setArgumentScreen("");
     }
 
     updateOperand(targetValue) { 

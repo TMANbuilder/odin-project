@@ -17,29 +17,30 @@
             <button>/</button>
         </div>
         <div id="second-row" class="calc-row">
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>X</button>            
+            <button onclick="submitOperand(7)">7</button>
+            <button onclick="submitOperand(8)">8</button>
+            <button onclick="submitOperand(9)">9</button>
+            <button onclick="submitOperator('x')">X</button>            
         </div>
         <div id="third-row" class="calc-row">
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>-</button>
+            <button onclick="submitOperand(4)">4</button>
+            <button onclick="submitOperand(5)">5</button>
+            <button onclick="submitOperand(6)">6</button>
+            <button onclick="submitOperator('-')">-</button>
         </div>
         <div id="fourth-row" class="calc-row">
-            <button>3</button>
-            <button>2</button>
-            <button>1</button>
-            <button>+</button>
+            <button onclick="submitOperand(3)">3</button>
+            <button onclick="submitOperand(2)">2</button>
+            <button onclick="submitOperand(1)">1</button>
+            <button onclick="submitOperator('+')">+</button>
         </div>
         <div id="fifth-row"class="calc-row">
             <button>Type</button>
-            <button>0</button>
+            <button onclick="submitOperand(7)">0</button>
             <button>.</button>
-            <button>=</button>
+            <button onclick="calculate()">=</button>
         </div>
     </div>
+<script src="./scripts.js"></script>
 </body>
 </html>

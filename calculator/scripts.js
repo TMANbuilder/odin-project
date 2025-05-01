@@ -36,9 +36,28 @@ class Calculator {
         return this.operator;
     }
 
-    setOperator(value) {
+    updateOperand(targetValue) {
+        const screen = document.getElementById("screen");
+        let currentValue = screen.innerText;
+
+        if (currentValue === "0") {
+            this.setScreen(String(targetValue));
+        } else if (this.getOperator() !== null) {
+            this.setScreen(String(targetValue));
+        } else {
+            let newValue = (String(currentValue) + String(targetValue));     
+            this.setScreen(String(newValue));
+        }
+    }
+
+    setOperator(targetValue) {
+
+        const screen = document.getElementById("screen");
+        let currentValue = screen.innerText;
+
+        this.setOperand(currentValue);
         
-        switch (value) {
+        switch (targetValue) {
             case "+/-":
                 this.operator = "+/-";
                 break;
@@ -68,6 +87,10 @@ class Calculator {
         let oper_1 = this.getStoredOperand(); 
         let oper_2 = this.getCurrentOperand();
         let operator = this.getOperator();
+
+        console.log(`oper_1: ${oper_1}`);
+        console.log(`oper_2: ${oper_2}`);
+        console.log(`operator: ${operator}`);
 
         switch (operator) {
             case "+/-":
@@ -101,8 +124,20 @@ class Calculator {
     setScreen(targetValue) {
         const screen = document.getElementById("screen");
         screen.innerText = targetValue;
-    }
+    }   
 
-    
+}
 
+const calculator = new Calculator();
+
+function submitOperand(targetValue) {
+    calculator.updateOperand(targetValue);
+}
+
+function submitOperator(targetValue) {
+    calculator.setOperator(targetValue);
+}
+
+function calculate() {
+    calculator.calculate();
 }

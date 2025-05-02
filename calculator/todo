@@ -1,9 +1,5 @@
-✔ debug and fix calculator entry @done(25-05-01 09:34)
-
-Bug:
-    ✔ Issue with setting operand values greater than 1 char @done(25-05-01 10:48)
-
 Functionality to develop:
+    ✔ Issue with setting operand values greater than 1 char @done(25-05-01 10:48)
     ✔ add the ability to see longform of operation @done(25-05-01 12:26)
     ✔ build out function that 'resets' the object variables @done(25-05-01 22:27)
     ✔ build function that sets object variables to an 'old' argument @done(25-05-01 22:27)

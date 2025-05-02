@@ -12,11 +12,24 @@ class Calculator {
         this.memory = [];
     }
 
+    setResultScreen(targetValue) {
+        this.screen.innerText = String(targetValue);
+    }
+
     getPreviousArgument(previousArgument, previousResult) {
+        
+        console.log(`previousArgument is ${previousArgument}`);
+        console.log(`previousResult is ${previousResult}`);
+        
         this.resetCalculator();
-        this.setCurrentArgument(previousResult);
+        this.setResult(previousResult);
         this.setCurrentArgument(previousArgument);
-        this.setArgumentScreen(previousArgument); 
+        this.setArgumentScreen(previousArgument);
+
+        console.log("in the getPreviousArgument method...");
+        console.log("result: " + this.getResult());
+
+        this.setResultScreen(this.getResult());    
     }
 
     setNextOperand(targetValue = null) {
@@ -143,8 +156,14 @@ class Calculator {
         let array = this.memory;
         let tempArray = [];
         
+        console.log("memroy is: " + this.memory[0]);
+
         tempArray.push(this.getCurrentArgument());
         tempArray.push(this.getResult());
+
+        console.log("FROM WITHIN moveCurrentArgument()");
+        console.log("tempArray[0]:" + tempArray[0]);
+        console.log("tempArray[0]:" + tempArray[1]);
 
         array.push(tempArray);
         this.resetCurrentArgument();
@@ -154,10 +173,14 @@ class Calculator {
         const memoryContainer = document.getElementById("memory-container");
         let tempArray = this.getMemoryArguments();  
 
-        const toBeRemoved = memoryContainer.querySelectorAll(".previous-argument");
+        const toBeRemoved = memoryContainer.querySelectorAll(".memory-record");
         toBeRemoved.forEach(target => target.remove());
 
         tempArray.forEach((target, index) => {
+            
+            console.log("target[0]: " + target[0]);
+            console.log("target[1]: " + target[1]);
+            
             const container = document.createElement("div");
             const argument = document.createElement("div");
             const result = document.createElement("div");
@@ -165,10 +188,11 @@ class Calculator {
             container.className = "memory-record";
             argument.className = "memory-result";
             result.className = "memory-argument";
+            
             result.innerText = target[0];
             argument.innerText = target[1];
         
-
+            // I THINK THE ISSUE IS HERE!!!!!
             container.appendChild(argument).append(result);
             // WORK ON 
             container.addEventListener("click", () => {

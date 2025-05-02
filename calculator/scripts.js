@@ -3,13 +3,20 @@ class Calculator {
     constructor() {
         this.screen = document.getElementById("screen");
         this.argumentScreen = document.getElementById("argument-screen");
-        this.currentArgument = "";
+        this.currentArgument = [];
         this.currentOperand = 0;
         this.storedOperand = 0;
         this.nextOperand = false;
         this.operator = null;
         this.result = null;
         this.memory = [];
+    }
+
+    getPreviousArgument(previousArgument, previousResult) {
+        this.resetCalculator();
+        this.setCurrentArgument(previousResult);
+        this.setCurrentArgument(previousArgument);
+        this.setArgumentScreen(previousArgument); 
     }
 
     setNextOperand(targetValue = null) {
@@ -134,8 +141,12 @@ class Calculator {
 
     moveCurrentArgument() {
         let array = this.memory;
+        let tempArray = [];
         
-        array.push(this.getCurrentArgument());
+        tempArray.push(this.getCurrentArgument());
+        tempArray.push(this.getResult());
+
+        array.push(tempArray);
         this.resetCurrentArgument();
     }
 
@@ -147,10 +158,33 @@ class Calculator {
         toBeRemoved.forEach(target => target.remove());
 
         tempArray.forEach((target, index) => {
+            const container = document.createElement("div");
             const argument = document.createElement("div");
-            argument.className = "previous-argument";
-            argument.innerText = target
-            memoryContainer.appendChild(argument);
+            const result = document.createElement("div");
+            
+            container.className = "memory-record";
+            argument.className = "memory-result";
+            result.className = "memory-argument";
+            result.innerText = target[0];
+            argument.innerText = target[1];
+        
+
+            container.appendChild(argument).append(result);
+            // WORK ON 
+            container.addEventListener("click", () => {
+
+                console.log("IVE BEEN PRESSED");
+                const targetArgument = container.querySelector(".memory-argument").innerText;
+                const targetResult = container.querySelector(".memory-result").innerText; 
+
+                console.log(`targetArgument is ${targetArgument}`);
+                console.log(`targetResult is ${targetResult}`);
+
+                this.getPreviousArgument(targetArgument, targetResult);
+
+            });
+
+            memoryContainer.appendChild(container);
         });   
     }
 

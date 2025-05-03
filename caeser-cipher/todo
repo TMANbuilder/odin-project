@@ -2,7 +2,9 @@ Todo:
 ✔ create caeserCipher class @done(25-05-02 20:00)
 ✔ create getKey @done(25-05-02 20:00)
 ✔ create encrypt method @done(25-05-02 20:00)
-☐ create decrypt method
-☐ build out menu
+✔ create decrypt method @done(25-05-02 20:28)
+✔ build out menu @done(25-05-02 20:28)
 ☐ build out 'game rules'
-☐ add error handling 
+☐ build out 'exit game'
+☐ add error handling
+☐ build out menu loop (ability to do more than one action...) 

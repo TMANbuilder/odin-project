@@ -11,6 +11,18 @@
 class CaeserCipher
   
   ALPHA = ('a'..'z').to_a
+  RULES = "
+  History of the Caesar Cipher
+  
+  The Caesar cipher is one of the oldest known encryption techniques, dating back over 2,000 years to Ancient Rome.
+
+  It’s named after Julius Caesar, the Roman general and statesman.
+
+  Caesar reportedly used this cipher to protect military messages.
+
+  He used a shift of three letters (e.g., A → D, B → E) to make his communications harder to read if intercepted.
+
+  At the time, literacy was limited, and simple encryption like this was sufficient for basic secrecy."
 
   def initialize() 
     @key = 0
@@ -82,6 +94,12 @@ class CaeserCipher
 
     decryptedMessage
     
+  end
+
+  def rules 
+    
+    puts RULES
+
   end
 
 end

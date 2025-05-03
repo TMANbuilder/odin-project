@@ -12,6 +12,7 @@ class StockPicker
 
   def initialize
     @stockPrices = []
+<<<<<<< HEAD
     @currentPrice
     @results = []
   end
@@ -32,10 +33,24 @@ class StockPicker
     for i in 0..6 
       puts "Give me the stock price on #{WEEK[i]}"
       @stockPrices[i] = gets.chomp.to_i
+=======
+    @results = []
+  end
+
+  def getStockPrice target
+    stockPrice[target]
+  end
+
+  def setStockPrices
+    for 0..6 
+      puts "Give me the stock price on #{WEEK[index]}"
+      @stockPrices[index] = gets.chomp.is_i
+>>>>>>> 272e16d90cffb3e216a020a445cac9dea381b047
     end
   end
 
   def writeStockPrices
+<<<<<<< HEAD
     for i in 0..6
       puts "#{WEEK[i]}: #{getStockPrice i}"
     end
@@ -50,3 +65,11 @@ end
 
 run = StockPicker.new
 run.main
+=======
+    for 0..6
+      puts "#{WEEK[index]}: #{getStockPrice index}"
+    end
+  end
+
+end
+>>>>>>> 272e16d90cffb3e216a020a445cac9dea381b047

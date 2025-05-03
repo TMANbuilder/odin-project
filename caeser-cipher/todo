@@ -1,0 +1,8 @@
+Todo:
+✔ create caeserCipher class @done(25-05-02 20:00)
+✔ create getKey @done(25-05-02 20:00)
+✔ create encrypt method @done(25-05-02 20:00)
+☐ create decrypt method
+☐ build out menu
+☐ build out 'game rules'
+☐ add error handling 

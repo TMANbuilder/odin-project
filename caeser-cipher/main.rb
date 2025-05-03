@@ -29,7 +29,7 @@ class CaeserCipher
     @key
   end
 
-  def encrypt()
+  def encrypt
     encryptedMessage = []
 
     puts "Provide a message you wish to encrypt:"
@@ -46,9 +46,28 @@ class CaeserCipher
 
   end
 
+  def decrypt
+    decryptedMessage = []
+
+    puts "Provide a message you wish to decrypt:"
+    givenMessage = gets.chomp
+    messageArray = givenMessage.chars
+    
+    messageArray.each {|letter| 
+      index = ALPHA.find_index(letter)
+      index -= getKey
+      decryptedMessage << ALPHA[index]      
+  }
+
+    decryptedMessage
+    
+  end
+
 end
 
 new_game = CaeserCipher.new
 new_game.startGame
 message = new_game.encrypt
 puts "Your encrypted message is: '#{message.join()}'" 
+message = new_game.decrypt
+puts "Your decrypted message is: '#{message.join()}'"

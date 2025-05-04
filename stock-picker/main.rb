@@ -50,8 +50,15 @@ class StockPicker
 
   def writeResults
     for i in 0..6
-      puts "#{WEEK[i]}: #{getResults i}"
+      puts "If you bought #{WEEK[i]}, best time to sell would be: #{WEEK[getResults i]}, for a profit of: #{getProfit i}"
     end
+  end
+
+  def getProfit date 
+    buy = getStockPrice date
+    sellDate = getResults date
+    sell = getStockPrice sellDate
+    profit = sell - buy
   end
 
   def calcProfits 

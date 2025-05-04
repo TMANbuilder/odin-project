@@ -31,6 +31,10 @@ class StockPicker
     @stockPrices[target]
   end
 
+  def getResults target
+    @results[target]
+  end
+
   def setStockPrices
     for i in 0..6 
       puts "Give me the stock price on #{WEEK[i]}"
@@ -44,24 +48,41 @@ class StockPicker
     end
   end
 
-  def calcProfits 
-    bestProfit = 0
-    targetProfit
-
+  def writeResults
     for i in 0..6
-      @stockPrices.each { | value | 
-        targetProfit = getStockPrice(i) - value
-        if targetProfit > bestProfit 
+      puts "#{WEEK[i]}: #{getResults i}"
+    end
+  end
+
+  def calcProfits 
+    for i in 0..6
+      bestProfit = 0
+      targetProfit = 0
+
+      purchasePrice = getStockPrice(i)
+      puts "Target Price is: #{purchasePrice}"
+
+      for y in (i + 1)..6
+        sellPrice = getStockPrice(y)
+
+        puts "Target: #{sellPrice} - #{purchasePrice}"
+        targetProfit = sellPrice - purchasePrice
+        puts "Profit: #{targetProfit}"
+
+        if targetProfit > bestProfit
+          puts "RESULTS BEING SET" 
           bestProfit = targetProfit
           setResults i, y
-        end 
-      }         
+        end
+      end          
     end
   end
 
   def main
     setStockPrices
     writeStockPrices
+    calcProfits
+    writeResults
   end
 
 end
